@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: user
+server:
+  port: 9001
+  servlet:
+    context-path: /org
