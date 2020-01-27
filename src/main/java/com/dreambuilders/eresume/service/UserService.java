@@ -10,17 +10,16 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 @Service
 public class UserService {
 
-	@HystrixCommand(fallbackMethod = "interrupt", commandProperties = {
-			@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value="1000")
-	})
-	public User getUser()
-	{
+
+	@HystrixCommand(fallbackMethod = "interrupt")
+	public User getUser() {
 		return UserRestUtil.getUser();
 	}
-	
-	public String interrupt()
+	public User interrupt()
 	{
-		return "Service unavialble";
+		User user = new User();
+		user.setEmail("Service unavialble");
+		user.setName("Service unavialble");
+		return user;
 	}
-	
 }
